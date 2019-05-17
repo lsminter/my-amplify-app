@@ -3,23 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 import { withAuthenticator } from 'aws-amplify-react'
-import { API, graphqlOperation } from 'aws-amplify'
-
-const ListTodos = `
-  query {
-    listTodos {
-      items {
-        id name description completed
-      }
-    }
-  }
-`
+import { API } from 'aws-amplify'
 
 class App extends Component {
-  state = { todos: [] }
+  state = { people: [] }
   async componentDidMount() {
-    const todoData = await API.graphql(graphqlOperation(ListTodos))
-    this.setState({ todos: todoData.data.listTodos.items })
+    const data = await API.get('peopleapi', '/people')
+    this.setState({ people: data.people })
   }
   render() {
     return (
@@ -29,10 +19,10 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         {
-          this.state.todos.map((todo, i) => (
+          this.state.people.map((person, i) => (
             <div>
-              <h3>{todo.name}</h3>
-              <p>{todo.description}</p>
+              <h3>{person.name}</h3>
+              <p>{person.hair_color}</p>
             </div>
           ))
         }

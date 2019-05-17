@@ -28,8 +28,14 @@ app.use(function(req, res, next) {
  **********************/
 
 app.get('/people', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+  const people = [
+    { name: 'Nader', hair_color: 'brown' },
+    { name: 'Lilly', hair_color: 'black' },
+    { name: 'Victor', hair_color: 'blonde' },
+  ]
+  res.json({
+    people
+  });
 });
 
 app.get('/people/*', function(req, res) {

@@ -12,6 +12,20 @@
 			"output": {
 				"securityType": "API_KEY"
 			}
+		},
+		"peopleapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "peoplefunction",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"function": {
